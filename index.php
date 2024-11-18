@@ -1,6 +1,6 @@
 <?php
 
-Kirby::plugin('tearoom-one/block-reference', [
+Kirby::plugin('tearoom1/kirby-block-reference', [
     'blueprints' => [
         'blocks/reference' => __DIR__ . '/blueprints/blocks/reference.yml'
     ],

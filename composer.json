@@ -12,6 +12,10 @@
       "role": "Maintainer"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tearoom1/kirby-block-reference.git"
+  },
   "require": {
     "getkirby/composer-installer": "^1.1"
   },
