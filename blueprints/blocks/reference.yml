@@ -1,0 +1,19 @@
+name: Reference
+icon: merge
+preview: fields
+wysiwyg: true
+fields:
+  targetPage:
+    label: Page
+    type: select
+    width: 1/2
+    options:
+      type: query
+      query: site.index.sortBy("parent", "asc", "title", "asc")
+      text: "{{ page.parent.title }} / {{ page.title }}"
+      value: "{{ page.id }}"
+      icon: link
+  targetBlock:
+    label: Block
+    type: blockReference
+    width: 1/2

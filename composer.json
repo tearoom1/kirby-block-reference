@@ -1,0 +1,23 @@
+{
+  "name": "tearoom1/kirby-block-reference",
+  "description": "Kirby plugin to reference blocks in other pages",
+  "license": "MIT",
+  "type": "kirby-plugin",
+  "keywords": ["kirby", "block"],
+  "authors": [
+    {
+      "name": "Mathis Koblin",
+      "email": "mail@tearoom.one",
+      "homepage": "https://www.tearoom.one",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "getkirby/composer-installer": "^1.1"
+  },
+  "config": {
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
+  }
+}
