@@ -3,7 +3,10 @@
   "description": "Kirby plugin to reference blocks in other pages",
   "license": "MIT",
   "type": "kirby-plugin",
-  "keywords": ["kirby", "block"],
+  "keywords": [
+    "kirby",
+    "block"
+  ],
   "authors": [
     {
       "name": "Mathis Koblin",
@@ -23,5 +26,6 @@
     "allow-plugins": {
       "getkirby/composer-installer": true
     }
-  }
+  },
+  "version": "0.1.0"
 }
