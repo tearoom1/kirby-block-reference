@@ -1,7 +1,8 @@
 {
   "name": "tearoom1/kirby-block-reference",
   "description": "Kirby plugin to reference blocks in other pages",
-  "license": "MIT",
+  "license": "MIT",,
+  "version": "v1.1.0",
   "type": "kirby-plugin",
   "keywords": [
     "kirby",
@@ -26,6 +27,5 @@
     "allow-plugins": {
       "getkirby/composer-installer": true
     }
-  },
-  "version": "0.1.0"
+  }
 }
