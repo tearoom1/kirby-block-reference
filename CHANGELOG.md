@@ -1,4 +1,11 @@
-## 1.0.1 (2025-07-21)
+## [1.0.2](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.1...v1.0.2) (2025-07-25)
+
+
+### Bug Fixes
+
+* allow any kind of field name for the layout field. ([3334082](https://github.com/tearoom1/kirby-block-reference/commit/333408263836c7cb4ffff90eb5250b41236d97fb))
+
+## [1.0.1](https://github.com/tearoom1/kirby-block-reference/compare/2aa1f518f5f0c5d18e011289da8ecd3adf71f98b...v1.0.1) (2025-07-21)
 
 
 ### Bug Fixes
