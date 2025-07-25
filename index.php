@@ -28,7 +28,12 @@ Kirby::plugin('tearoom1/kirby-block-reference', [
                     if (!$page || !$page->layout()) {
                         return [];
                     }
-                    return $page->layout()->toLayouts()->toBlocks()->toArray();
+                    $fieldsToCheck = array_keys(array_filter($page->blueprint()->fields(),
+                        fn($item) => in_array($item['type'], ['blocks', 'layout'])));
+                    foreach ($fieldsToCheck as $fieldName) {
+                        return $page->{$fieldName}()->toBlocks()->toArray();
+                    }
+                    return [];
                 }
             ]
         ]

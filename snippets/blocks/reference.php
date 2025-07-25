@@ -6,4 +6,13 @@
  */
 // retrieve block by id
 ?>
-<?= $site->find($block->targetPage())->layout()->toLayouts()->toBlocks()->filterBy('id', $block->targetBlock()); ?>
+<?php
+$targetPage = $site->find($block->targetPage());
+$fieldsToCheck = array_keys(array_filter($targetPage->blueprint()->fields(),
+    fn($item) => in_array($item['type'], ['blocks', 'layout'])));
+foreach ($fieldsToCheck as $fieldName) {
+    echo $targetPage->{$fieldName}()->toBlocks()->filterBy('id', $block->targetBlock());
+    break;
+}
+?>
+
