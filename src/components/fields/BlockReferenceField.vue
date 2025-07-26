@@ -40,7 +40,7 @@ export default {
           let text = Object.values(content).join(' | ').substring(0, 33);
           // console.log('Block: ' + response[i].type + ' : ' + text);
           options.push({
-            text: i + ': ' + response[i].type + ' | ' + text,
+            text: i + ': ' + response[i].parent + ' | ' + response[i].type + ' | ' + text,
             value: response[i].id
           });
         }
