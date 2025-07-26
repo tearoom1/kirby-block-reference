@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.2...v1.0.3) (2025-07-26)
+
+
+### Bug Fixes
+
+* allow selection from multiple layout or blocks fleids on a page ([733fb3b](https://github.com/tearoom1/kirby-block-reference/commit/733fb3b197a2c8ff5c30690003fbeefc7a9cf3ff))
+
 ## [1.0.2](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.1...v1.0.2) (2025-07-25)
 
 
