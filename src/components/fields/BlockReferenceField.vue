@@ -37,7 +37,7 @@ export default {
         for (let i = 0; i < response.length; i++) {
           let content = response[i].content;
           // find all text nodes in the content where the field name is
-          let text = Object.values(content).join(' | ').substring(0, 33);
+          let text = Object.values(content).join(' ~ ').substring(0, 33);
           // console.log('Block: ' + response[i].type + ' : ' + text);
           options.push({
             text: i + ': ' + response[i].parent + ' | ' + response[i].type + ' | ' + text,

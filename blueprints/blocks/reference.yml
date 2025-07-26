@@ -4,13 +4,13 @@ preview: fields
 wysiwyg: true
 fields:
   targetPage:
-    label: Target Page
+    label: Page
     type: select
     width: 1/2
     options:
       type: query
-      query: site.index(true).sortBy("parent", "asc", "title", "asc")
-      text: "{{ page.parent.title }} / {{ page.title }}"
+      query: site.index(true).sortBy("id", "asc")
+      text: "{{ page.id }} ~ {{ page.title }}"
       value: "{{ page.id }}"
       icon: link
   targetBlock:
