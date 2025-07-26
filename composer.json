@@ -2,7 +2,7 @@
   "name": "tearoom1/kirby-block-reference",
   "description": "Kirby plugin to reference blocks in other pages",
   "license": "MIT",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "kirby-plugin",
   "keywords": [
     "kirby",

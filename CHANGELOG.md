@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.3...v1.0.4) (2025-07-26)
+
+
+### Bug Fixes
+
+* improved display of field and block ([1b06a1c](https://github.com/tearoom1/kirby-block-reference/commit/1b06a1cef739187eaa047fed8e6d190071598230))
+
 ## [1.0.3](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.2...v1.0.3) (2025-07-26)
 
 
