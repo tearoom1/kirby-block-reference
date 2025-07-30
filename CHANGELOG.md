@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.4...v1.0.5) (2025-07-30)
+
+
+### Bug Fixes
+
+* readme ([51c5bab](https://github.com/tearoom1/kirby-block-reference/commit/51c5bab2c888330cf07c888eb9267f2bf3db41ee))
+
 ## [1.0.4](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.3...v1.0.4) (2025-07-26)
 
 
