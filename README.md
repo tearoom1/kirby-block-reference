@@ -1,7 +1,7 @@
 # Reference Block Plugin for Kirby
 
-This plugin allows you to reference other blocks. 
-Thus, you can easily repeat a block in multiple places on your 
+This plugin allows you to reference other blocks.
+Thus, you can easily repeat a block in multiple places on your
 page while being able to update it in one central place.
 
 ## Getting started
@@ -41,4 +41,10 @@ fieldsets:
 
 ## License
 
-This plugin is licensed under the [MIT License](LICENSE), but **using Kirby in production** requires you to [buy a license](https://getkirby.com/buy).
+This plugin is licensed under the [MIT License](LICENSE)
+
+## Credits
+
+- Developed by Mathis Koblin
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://coff.ee/tearoom1)
