@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.6...v1.0.7) (2025-08-02)
+
+
+### Bug Fixes
+
+* reverted to use class loading in index.php ([8a7eee1](https://github.com/tearoom1/kirby-block-reference/commit/8a7eee11c45ed406171d32106a9472da98796aca))
+
 ## [1.0.6](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.5...v1.0.6) (2025-08-01)
 
 
@@ -25,11 +32,4 @@
 ### Bug Fixes
 
 * allow selection from multiple layout or blocks fleids on a page ([733fb3b](https://github.com/tearoom1/kirby-block-reference/commit/733fb3b197a2c8ff5c30690003fbeefc7a9cf3ff))
-
-## [1.0.2](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.1...v1.0.2) (2025-07-25)
-
-
-### Bug Fixes
-
-* allow any kind of field name for the layout field. ([3334082](https://github.com/tearoom1/kirby-block-reference/commit/333408263836c7cb4ffff90eb5250b41236d97fb))
 
