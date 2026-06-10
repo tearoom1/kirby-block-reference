@@ -8,6 +8,9 @@
 ?>
 <?php
 $targetPage = site()->index(true)->find($block->targetPage());
+if (!$targetPage) {
+    return;
+}
 $targetBlock = $block->targetBlock();
 
 $fieldsToCheck = array_keys(array_filter($targetPage->blueprint()->fields(),

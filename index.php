@@ -38,12 +38,14 @@ Kirby::plugin('tearoom1/kirby-block-reference', [
         'routes' => [
             [
                 'pattern' => 'getAllPages',
+                'auth' => true,
                 'action' => function () {
                     return array_keys(site()->index()->toArray());
                 }
             ],
             [
                 'pattern' => 'blocks',
+                'auth' => true,
                 'action' => function () {
                     $pageId = get('page');
                     $page = site()->index(true)->findBy('id', $pageId);
