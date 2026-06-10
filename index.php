@@ -22,7 +22,39 @@ function getBlocksFromPage(\Kirby\Cms\Page $page): array
     }));
 }
 
+function blockReferenceCanAccess(): bool
+{
+    $user = kirby()->user();
+    if (!$user) {
+        return false;
+    }
+
+    if ($user->isAdmin()) {
+        return true;
+    }
+
+    $allowed = option('tearoom1.kirby-block-reference.allowedRoles', []);
+    if (!is_array($allowed) || empty($allowed)) {
+        return false;
+    }
+
+    return in_array($user->role()->name(), $allowed, true);
+}
+
+function blockReferenceCanReadPage(\Kirby\Cms\Page $page): bool
+{
+    return $page->permissions()->can('read') === true;
+}
+
 Kirby::plugin('tearoom1/kirby-block-reference', [
+    'options' => [
+        'allowedRoles' => [],
+    ],
+    'pageMethods' => [
+        'blockReferenceCanRead' => function (): bool {
+            return blockReferenceCanAccess() && blockReferenceCanReadPage($this);
+        },
+    ],
     'blueprints' => [
         'blocks/reference' => __DIR__ . '/blueprints/blocks/reference.yml'
     ],
@@ -40,18 +72,38 @@ Kirby::plugin('tearoom1/kirby-block-reference', [
                 'pattern' => 'getAllPages',
                 'auth' => true,
                 'action' => function () {
-                    return array_keys(site()->index()->toArray());
+                    if (!blockReferenceCanAccess()) {
+                        return [];
+                    }
+
+                    $pages = [];
+                    foreach (site()->index(true) as $page) {
+                        if (blockReferenceCanReadPage($page)) {
+                            $pages[] = $page->id();
+                        }
+                    }
+
+                    return $pages;
                 }
             ],
             [
                 'pattern' => 'blocks',
                 'auth' => true,
                 'action' => function () {
-                    $pageId = get('page');
-                    $page = site()->index(true)->findBy('id', $pageId);
-                    if (!$page) {
+                    if (!blockReferenceCanAccess()) {
                         return [];
                     }
+
+                    $pageId = get('page');
+                    if (!is_string($pageId) || $pageId === '') {
+                        return [];
+                    }
+
+                    $page = site()->index(true)->findBy('id', $pageId);
+                    if (!$page || !blockReferenceCanReadPage($page)) {
+                        return [];
+                    }
+
                     return getBlocksFromPage($page);
                 }
             ]

@@ -41,9 +41,18 @@ fieldsets:
 
 ## Access Control
 
-The plugin exposes two API routes that the panel block UI uses to look up reference targets: `getAllPages` (list all page IDs) and `blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user — they will return `401 Unauthorized` for anonymous callers.
+The plugin exposes two API routes that the panel block UI uses to look up reference targets: `getAllPages` (list page IDs) and `blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user; they return `401 Unauthorized` for anonymous callers.
 
-There is no per-role configuration: any panel user who can edit blocks can use the reference picker. If you need stricter control, restrict the reference block to specific blueprints rather than relying on the API.
+By default, only admins can use the reference picker. Non-admin roles can be allowed explicitly:
+
+```php
+// site/config/config.php
+'tearoom1.kirby-block-reference.allowedRoles' => [
+    'editor',
+],
+```
+
+The page picker and API routes also check Kirby's page `read` permission for every target page. Users only see pages they are allowed to read.
 
 ## License
 
