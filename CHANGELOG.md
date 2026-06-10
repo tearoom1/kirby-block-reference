@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.7...v1.0.8) (2026-06-10)
+
+
+### Bug Fixes
+
+* require panel auth on api routes and guard null target page ([6a7aabb](https://github.com/tearoom1/kirby-block-reference/commit/6a7aabbe5e95feabe3d7b8b416c3ce4724a0cfe9))
+
 ## [1.0.7](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.6...v1.0.7) (2025-08-02)
 
 
@@ -25,11 +32,4 @@
 ### Bug Fixes
 
 * improved display of field and block ([1b06a1c](https://github.com/tearoom1/kirby-block-reference/commit/1b06a1cef739187eaa047fed8e6d190071598230))
-
-## [1.0.3](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.2...v1.0.3) (2025-07-26)
-
-
-### Bug Fixes
-
-* allow selection from multiple layout or blocks fleids on a page ([733fb3b](https://github.com/tearoom1/kirby-block-reference/commit/733fb3b197a2c8ff5c30690003fbeefc7a9cf3ff))
 
