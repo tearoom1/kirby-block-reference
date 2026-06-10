@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.8...v1.0.9) (2026-06-10)
+
+
+### Bug Fixes
+
+* restrict block reference access ([193a783](https://github.com/tearoom1/kirby-block-reference/commit/193a783e2be849515baac3e1a0755acd7af66cdb))
+
 ## [1.0.8](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.7...v1.0.8) (2026-06-10)
 
 
@@ -25,11 +32,4 @@
 ### Bug Fixes
 
 * readme ([51c5bab](https://github.com/tearoom1/kirby-block-reference/commit/51c5bab2c888330cf07c888eb9267f2bf3db41ee))
-
-## [1.0.4](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.3...v1.0.4) (2025-07-26)
-
-
-### Bug Fixes
-
-* improved display of field and block ([1b06a1c](https://github.com/tearoom1/kirby-block-reference/commit/1b06a1cef739187eaa047fed8e6d190071598230))
 
