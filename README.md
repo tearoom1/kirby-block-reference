@@ -39,6 +39,12 @@ fieldsets:
   - reference
 ```
 
+## Access Control
+
+The plugin exposes two API routes that the panel block UI uses to look up reference targets: `getAllPages` (list all page IDs) and `blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user — they will return `401 Unauthorized` for anonymous callers.
+
+There is no per-role configuration: any panel user who can edit blocks can use the reference picker. If you need stricter control, restrict the reference block to specific blueprints rather than relying on the API.
+
 ## License
 
 This plugin is licensed under the [MIT License](LICENSE)
