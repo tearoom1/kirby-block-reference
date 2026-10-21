@@ -83,7 +83,7 @@ class BlockReferenceTest extends TestCase
 
         $pages = $this->api($kirby, 'getAllPages');
 
-        $this->assertEqualsCanonicalizing(['source', 'target', 'draft'], $pages);
+        $this->assertEqualsCanonicalizing(['source', 'source/child', 'target', 'draft'], $pages);
     }
 
     public function testApiReturnsTheBlocksOfAPage(): void

@@ -72,6 +72,15 @@ abstract class TestCase extends BaseTestCase
                 'children' => [
                     [
                         'slug' => 'source',
+                        'children' => [[
+                            'slug' => 'child',
+                            'content' => [
+                                'title' => 'Child',
+                                'text' => json_encode([
+                                    ['id' => 'child-heading', 'type' => 'heading', 'content' => ['text' => 'From a subpage', 'level' => 'h3']],
+                                ]),
+                            ],
+                        ]],
                         'content' => array_merge([
                             'title' => 'Source',
                             'text' => json_encode([
@@ -90,6 +99,8 @@ abstract class TestCase extends BaseTestCase
                                 ['id' => 'ref-layout', 'type' => 'reference', 'content' => ['targetPage' => 'source', 'targetBlock' => 'in-layout']],
                                 ['id' => 'ref-missing-page', 'type' => 'reference', 'content' => ['targetPage' => 'gone', 'targetBlock' => 'heading-1']],
                                 ['id' => 'ref-missing-block', 'type' => 'reference', 'content' => ['targetPage' => 'source', 'targetBlock' => 'gone']],
+                                ['id' => 'ref-child', 'type' => 'reference', 'content' => ['targetPage' => 'source/child', 'targetBlock' => 'child-heading']],
+                                ['id' => 'ref-draft', 'type' => 'reference', 'content' => ['targetPage' => 'draft', 'targetBlock' => 'draft-heading']],
                             ]),
                         ],
                     ],

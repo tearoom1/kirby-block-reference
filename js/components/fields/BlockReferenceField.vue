@@ -31,7 +31,7 @@ export default {
         return;
       }
 
-      await this.$api.get('blocks?page=' + targetPage).then((response) => {
+      await this.$api.get('block-reference/blocks', {page: targetPage}).then((response) => {
         // iterate over the array in the response and set text and value in options
         let options = [];
         for (let i = 0; i < response.length; i++) {

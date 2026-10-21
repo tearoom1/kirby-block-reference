@@ -42,9 +42,18 @@ fieldsets:
   - reference
 ```
 
+## Drafts
+
+Blocks of draft pages are only rendered for logged-in users, so a reference to a block on an unpublished page does not show it to visitors. Versions before 1.1 rendered them for everyone; to keep that behaviour:
+
+```php
+// site/config/config.php
+'tearoom1.kirby-block-reference.renderDrafts' => true,
+```
+
 ## Access Control
 
-The plugin exposes two API routes that the panel block UI uses to look up reference targets: `getAllPages` (list page IDs) and `blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user; they return `401 Unauthorized` for anonymous callers.
+The plugin exposes two API routes that the panel block UI uses to look up reference targets: `block-reference/pages` (list page IDs) and `block-reference/blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user; they return `401 Unauthorized` for anonymous callers. The route names of earlier versions, `getAllPages` and `blocks`, still work and will be removed in the next major version.
 
 By default, only admins can use the reference picker. Non-admin roles can be allowed explicitly:
 
@@ -56,6 +65,12 @@ By default, only admins can use the reference picker. Non-admin roles can be all
 ```
 
 The page picker and API routes also check Kirby's page `read` permission for every target page. Users only see pages they are allowed to read.
+
+## Developers
+
+The plugin's functions live in `TearoomOne\BlockReference\BlockReference` (`blocksFromPage()`, `canAccess()`, `canReadPage()`, `render()`). The global helpers of earlier versions (`getBlocksFromPage()`, `blockReferenceCanAccess()`, `blockReferenceCanReadPage()`) still exist as deprecated wrappers.
+
+Tests: `composer install && composer test`
 
 ## License
 

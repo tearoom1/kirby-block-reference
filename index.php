@@ -1,58 +1,45 @@
 <?php
 
-/**
- * @param \Kirby\Cms\Page $page
- * @return array
- */
-function getBlocksFromPage(\Kirby\Cms\Page $page): array
-{
-    $allBlocks = [];
-    $fieldsToCheck = array_keys(array_filter($page->blueprint()->fields(),
-        fn($item) => in_array($item['type'], ['blocks', 'layout'])));
-    foreach ($fieldsToCheck as $fieldName) {
-        $toArray = $page->{$fieldName}()->toBlocks()->toArray();
-        foreach ($toArray as &$block) {
-            $block['parent'] = $fieldName;
-        }
-        $allBlocks = array_merge($allBlocks, $toArray);
+load([
+    'TearoomOne\\BlockReference\\BlockReference' => 'src/BlockReference.php',
+], __DIR__);
+
+use TearoomOne\BlockReference\BlockReference;
+
+// Global helpers of earlier versions, kept for code that calls them.
+// They are skipped if another plugin already uses the name.
+if (!function_exists('getBlocksFromPage')) {
+    /** @deprecated Use TearoomOne\BlockReference\BlockReference::blocksFromPage() */
+    function getBlocksFromPage(\Kirby\Cms\Page $page): array
+    {
+        return BlockReference::blocksFromPage($page);
     }
-    // remove all blocks with type "reference"
-    return array_values(array_filter($allBlocks, function ($block) {
-        return $block['type'] !== 'reference';
-    }));
 }
 
-function blockReferenceCanAccess(): bool
-{
-    $user = kirby()->user();
-    if (!$user) {
-        return false;
+if (!function_exists('blockReferenceCanAccess')) {
+    /** @deprecated Use TearoomOne\BlockReference\BlockReference::canAccess() */
+    function blockReferenceCanAccess(): bool
+    {
+        return BlockReference::canAccess();
     }
-
-    if ($user->isAdmin()) {
-        return true;
-    }
-
-    $allowed = option('tearoom1.kirby-block-reference.allowedRoles', []);
-    if (!is_array($allowed) || empty($allowed)) {
-        return false;
-    }
-
-    return in_array($user->role()->name(), $allowed, true);
 }
 
-function blockReferenceCanReadPage(\Kirby\Cms\Page $page): bool
-{
-    return $page->permissions()->can('read') === true;
+if (!function_exists('blockReferenceCanReadPage')) {
+    /** @deprecated Use TearoomOne\BlockReference\BlockReference::canReadPage() */
+    function blockReferenceCanReadPage(\Kirby\Cms\Page $page): bool
+    {
+        return BlockReference::canReadPage($page);
+    }
 }
 
 Kirby::plugin('tearoom1/kirby-block-reference', [
     'options' => [
         'allowedRoles' => [],
+        'renderDrafts' => false, // Render blocks of draft pages for visitors too (before 1.1 they always were)
     ],
     'pageMethods' => [
         'blockReferenceCanRead' => function (): bool {
-            return blockReferenceCanAccess() && blockReferenceCanReadPage($this);
+            return BlockReference::canAccess() && BlockReference::canReadPage($this);
         },
     ],
     'blueprints' => [
@@ -69,44 +56,26 @@ Kirby::plugin('tearoom1/kirby-block-reference', [
     'api' => [
         'routes' => [
             [
+                'pattern' => 'block-reference/pages',
+                'auth' => true,
+                'action' => fn () => BlockReference::pageIds(),
+            ],
+            [
+                'pattern' => 'block-reference/blocks',
+                'auth' => true,
+                'action' => fn () => BlockReference::blocksForPicker(get('page')),
+            ],
+            // Names of earlier versions, kept for custom code until the next major version
+            [
                 'pattern' => 'getAllPages',
                 'auth' => true,
-                'action' => function () {
-                    if (!blockReferenceCanAccess()) {
-                        return [];
-                    }
-
-                    $pages = [];
-                    foreach (site()->index(true) as $page) {
-                        if (blockReferenceCanReadPage($page)) {
-                            $pages[] = $page->id();
-                        }
-                    }
-
-                    return $pages;
-                }
+                'action' => fn () => BlockReference::pageIds(),
             ],
             [
                 'pattern' => 'blocks',
                 'auth' => true,
-                'action' => function () {
-                    if (!blockReferenceCanAccess()) {
-                        return [];
-                    }
-
-                    $pageId = get('page');
-                    if (!is_string($pageId) || $pageId === '') {
-                        return [];
-                    }
-
-                    $page = site()->index(true)->findBy('id', $pageId);
-                    if (!$page || !blockReferenceCanReadPage($page)) {
-                        return [];
-                    }
-
-                    return getBlocksFromPage($page);
-                }
-            ]
+                'action' => fn () => BlockReference::blocksForPicker(get('page')),
+            ],
         ]
     ],
 ]);
