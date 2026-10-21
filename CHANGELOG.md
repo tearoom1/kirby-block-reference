@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.9...v1.1.0) (2026-10-21)
+
+
+### Features
+
+* namespaced API, faster rendering and no draft blocks for visitors ([0181d45](https://github.com/tearoom1/kirby-block-reference/commit/0181d4542e233e2924c2cb9135372425f623657d))
+
 ## [1.0.9](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.8...v1.0.9) (2026-06-10)
 
 
@@ -25,11 +32,4 @@
 ### Bug Fixes
 
 * updated composer and autoloading ([996f135](https://github.com/tearoom1/kirby-block-reference/commit/996f135ba28387f449560fed9ec7ba4e426074f7))
-
-## [1.0.5](https://github.com/tearoom1/kirby-block-reference/compare/v1.0.4...v1.0.5) (2025-07-30)
-
-
-### Bug Fixes
-
-* readme ([51c5bab](https://github.com/tearoom1/kirby-block-reference/commit/51c5bab2c888330cf07c888eb9267f2bf3db41ee))
 
