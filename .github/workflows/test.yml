@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - { php: '8.2', kirby: '^4.0' }
+          - { php: '8.3', kirby: '^4.0' }
+          - { php: '8.4', kirby: '^4.0' }
+          - { php: '8.2', kirby: '^5.0' }
+          - { php: '8.3', kirby: '^5.0' }
+          - { php: '8.4', kirby: '^5.0' }
+
+    name: PHP ${{ matrix.php }} / Kirby ${{ matrix.kirby }}
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer config platform.php ${{ matrix.php }}
+          composer require --dev "getkirby/cms:${{ matrix.kirby }}" --no-update
+          composer update --prefer-dist --no-progress
+
+      - name: Run tests
+        run: composer test

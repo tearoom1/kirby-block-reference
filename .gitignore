@@ -7,3 +7,7 @@
 # Composer files
 /vendor
 /kirby
+
+# Tests
+/.phpunit.cache
+/composer.lock

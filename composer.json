@@ -31,7 +31,25 @@
   "conflict": {
     "getkirby/cms": "<4.0"
   },
+  "require-dev": {
+    "getkirby/cms": "^4.0 || ^5.0",
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TearoomOne\\BlockReference\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
   "config": {
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    },
+    "platform": {
+      "php": "8.2.0"
+    }
   }
 }
