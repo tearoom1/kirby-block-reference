@@ -72,6 +72,14 @@ The plugin's functions live in `TearoomOne\BlockReference\BlockReference` (`bloc
 
 Tests: `composer install && composer test`
 
+## Support
+
+Block Reference is free and MIT licensed, and it stays that way. If it saves you time, you can help keep it maintained. Paying is voluntary and any amount is welcome.
+
+Agencies and companies that need an invoice can get a Supporter License. You choose the price and whether it covers one project or your whole company. Lemon Squeezy handles the sale as merchant of record, so you get a proper invoice with VAT. The license adds no features and no priority support.
+
+[Support this plugin](https://www.tearoom.one/en/kirby-plugins/support)
+
 ## License
 
 This plugin is licensed under the [MIT License](LICENSE)
@@ -79,8 +87,6 @@ This plugin is licensed under the [MIT License](LICENSE)
 ## Credits
 
 - Developed by Mathis Koblin
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://coff.ee/tearoom1)
 
 ## Screenshots
 
