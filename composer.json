@@ -46,7 +46,7 @@
     "getkirby/cms": "<6.0"
   },
   "require-dev": {
-    "getkirby/cms": "^6.0",
+    "getkirby/cms": "^6.0@beta",
     "phpunit/phpunit": "^11.0"
   },
   "autoload-dev": {

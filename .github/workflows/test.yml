@@ -15,8 +15,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - { php: '8.3', kirby: '^6.0' }
-          - { php: '8.4', kirby: '^6.0' }
+          - { php: '8.3', kirby: '^6.0@beta' }
+          - { php: '8.4', kirby: '^6.0@beta' }
 
     name: PHP ${{ matrix.php }} / Kirby ${{ matrix.kirby }}
 
