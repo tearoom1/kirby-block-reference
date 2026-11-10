@@ -1,10 +1,12 @@
 <?php
 
 load([
+    'TearoomOne\\BlockReference\\BlockReferenceField' => 'src/BlockReferenceField.php',
     'TearoomOne\\BlockReference\\BlockReference' => 'src/BlockReference.php',
 ], __DIR__);
 
 use TearoomOne\BlockReference\BlockReference;
+use TearoomOne\BlockReference\BlockReferenceField;
 
 // Global helpers of earlier versions, kept for code that calls them.
 // They are skipped if another plugin already uses the name.
@@ -49,9 +51,7 @@ Kirby::plugin('tearoom1/kirby-block-reference', [
         'blocks/reference' => __DIR__ . '/snippets/blocks/reference.php'
     ],
     'fields' => [
-        'blockReference' => [
-            'extends' => 'select'
-        ]
+        'blockReference' => BlockReferenceField::class
     ],
     'api' => [
         'routes' => [

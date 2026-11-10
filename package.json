@@ -1,7 +1,10 @@
 {
   "scripts": {
-    "dev": "npx -y kirbyup js/index.js --watch",
-    "serve": "npx -y kirbyup serve js/index.js",
-    "build": "npx -y kirbyup js/index.js"
+    "dev": "kirbyup js/index.js --watch",
+    "serve": "kirbyup serve js/index.js",
+    "build": "kirbyup js/index.js"
+  },
+  "devDependencies": {
+    "kirbyup": "4.0.0-beta.1"
   }
 }

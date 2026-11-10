@@ -7,6 +7,10 @@ page while being able to update it in one central place.
 
 ![Screenshot](screenshot.jpg)
 
+## Requirements
+
+Kirby 6 and PHP 8.3 or newer. The blueprint of the block does not change: the field `type: blockReference` works as before.
+
 ## Getting started
 
 Use one of the following methods to install & use `tearoom1/kirby-block-reference`:
