@@ -74,8 +74,14 @@ export default {
       }
 
       this.blockOptions = response.map((block, i) => {
-        // join the block content and cut it to a short preview
-        const text = Object.values(block.content).join(" ~ ").substring(0, 33);
+        // join the block content and cut it to a short preview, without the
+        // HTML tags of writer and text blocks
+        const text = Object.values(block.content)
+          .join(" ~ ")
+          .replace(/<[^>]*>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+          .substring(0, 33);
 
         return {
           text: i + ": " + block.parent + " | " + block.type + " | " + text,
