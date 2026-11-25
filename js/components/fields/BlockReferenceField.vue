@@ -1,5 +1,5 @@
 <template>
-  <k-field v-bind="$props" :input="id" class="k-select-field">
+  <k-field v-bind="$props" :input="id" class="k-select-field" @focusin="retry">
     <k-input
         ref="input"
         v-bind="$props"
@@ -25,7 +25,9 @@ export default {
   },
   data() {
     return {
-      blockOptions: []
+      blockOptions: [],
+      // the page whose blocks could not be loaded, tried again on focus
+      failedPage: null
     };
   },
   computed: {
@@ -44,13 +46,27 @@ export default {
   },
   methods: {
     async fillBlocks() {
+      // never offer the blocks of the page selected before
+      this.blockOptions = [];
+      this.failedPage = null;
+
       if (!this.targetPage) {
-        this.blockOptions = [];
         return;
       }
 
       const targetPage = this.targetPage;
-      const response = await this.$api.get("block-reference/blocks", {page: targetPage});
+      let response;
+
+      try {
+        response = await this.$api.get("block-reference/blocks", {page: targetPage});
+      } catch (error) {
+        if (targetPage === this.targetPage) {
+          this.failedPage = targetPage;
+          this.$panel.error(error);
+        }
+
+        return;
+      }
 
       // ignore the answer if another page was selected meanwhile
       if (targetPage !== this.targetPage) {
@@ -66,6 +82,11 @@ export default {
           value: block.id
         };
       });
+    },
+    retry() {
+      if (this.failedPage && this.failedPage === this.targetPage) {
+        this.fillBlocks();
+      }
     }
   }
 };
