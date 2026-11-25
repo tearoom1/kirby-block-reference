@@ -9,7 +9,13 @@ page while being able to update it in one central place.
 
 ## Requirements
 
-Kirby 6 and PHP 8.3 or newer. The blueprint of the block does not change: the field `type: blockReference` works as before.
+Kirby 6 and PHP 8.3 or newer. For Kirby 4 and 5, use version 1 of this plugin (branch `kirby-5`).
+
+### Upgrading from version 1
+
+- Update Kirby to version 6 first, then the plugin to version 2.
+- Blueprints and content stay as they are: the block `reference` and the field `type: blockReference` work as before.
+- The API routes `getAllPages` and `blocks` are gone. Custom code that calls them must use `block-reference/pages` and `block-reference/blocks`.
 
 ## Getting started
 
@@ -57,7 +63,7 @@ Blocks of draft pages are only rendered for logged-in users, so a reference to a
 
 ## Access Control
 
-The plugin exposes two API routes that the panel block UI uses to look up reference targets: `block-reference/pages` (list page IDs) and `block-reference/blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user; they return `401 Unauthorized` for anonymous callers. The route names of earlier versions, `getAllPages` and `blocks`, still work and will be removed in the next major version.
+The plugin exposes two API routes that the panel block UI uses to look up reference targets: `block-reference/pages` (list page IDs) and `block-reference/blocks` (return the blocks of a given page, including drafts). Both routes require a logged-in panel user; they return `401 Unauthorized` for anonymous callers.
 
 By default, only admins can use the reference picker. Non-admin roles can be allowed explicitly:
 

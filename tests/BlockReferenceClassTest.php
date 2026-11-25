@@ -46,14 +46,13 @@ class BlockReferenceClassTest extends TestCase
         $this->assertStringContainsString('Not published yet', $this->render($kirby, 'ref-draft'));
     }
 
-    public function testNewApiRoutesMatchTheOldOnes(): void
+    public function testRouteNamesOfVersionOneAreGone(): void
     {
-        $_GET['page'] = 'source';
-        $kirby = $this->app();
-        $kirby->impersonate('admin@example.test');
+        $patterns = array_column($this->app()->extensions('api')['routes'] ?? [], 'pattern');
 
-        $this->assertSame($this->api($kirby, 'getAllPages'), $this->api($kirby, 'block-reference/pages'));
-        $this->assertSame($this->api($kirby, 'blocks'), $this->api($kirby, 'block-reference/blocks'));
+        $this->assertContains('block-reference/pages', $patterns);
+        $this->assertNotContains('getAllPages', $patterns);
+        $this->assertNotContains('blocks', $patterns);
     }
 
     public function testNewApiRoutesCheckAccess(): void

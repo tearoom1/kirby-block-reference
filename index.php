@@ -65,17 +65,6 @@ Kirby::plugin('tearoom1/kirby-block-reference', [
                 'auth' => true,
                 'action' => fn () => BlockReference::blocksForPicker(get('page')),
             ],
-            // Names of earlier versions, kept for custom code until the next major version
-            [
-                'pattern' => 'getAllPages',
-                'auth' => true,
-                'action' => fn () => BlockReference::pageIds(),
-            ],
-            [
-                'pattern' => 'blocks',
-                'auth' => true,
-                'action' => fn () => BlockReference::blocksForPicker(get('page')),
-            ],
         ]
     ],
 ]);

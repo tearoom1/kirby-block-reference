@@ -81,7 +81,7 @@ class BlockReferenceTest extends TestCase
         $kirby = $this->app();
         $kirby->impersonate('admin@example.test');
 
-        $pages = $this->api($kirby, 'getAllPages');
+        $pages = $this->api($kirby, 'block-reference/pages');
 
         $this->assertEqualsCanonicalizing(['source', 'source/child', 'target', 'draft'], $pages);
     }
@@ -92,7 +92,7 @@ class BlockReferenceTest extends TestCase
         $kirby = $this->app();
         $kirby->impersonate('admin@example.test');
 
-        $blocks = $this->api($kirby, 'blocks');
+        $blocks = $this->api($kirby, 'block-reference/blocks');
 
         $this->assertSame(['heading-1', 'in-layout'], array_column($blocks, 'id'));
     }
@@ -103,8 +103,8 @@ class BlockReferenceTest extends TestCase
         $kirby = $this->app();
         $kirby->impersonate('editor@example.test');
 
-        $this->assertSame([], $this->api($kirby, 'getAllPages'));
-        $this->assertSame([], $this->api($kirby, 'blocks'));
+        $this->assertSame([], $this->api($kirby, 'block-reference/pages'));
+        $this->assertSame([], $this->api($kirby, 'block-reference/blocks'));
     }
 
     protected function tearDown(): void
