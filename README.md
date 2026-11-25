@@ -9,7 +9,12 @@ page while being able to update it in one central place.
 
 ## Requirements
 
-Kirby 6 and PHP 8.3 or newer. For Kirby 4 and 5, use version 1 of this plugin (branch `kirby-5`).
+| Kirby | Plugin version | Branch |
+|---|---|---|
+| 6 | 2.x (since 2.0.0) | `main` |
+| 4 and 5 | 1.x (bug fixes only, latest 1.1.1) | `kirby-5` |
+
+PHP 8.3 or newer.
 
 ### Upgrading from version 1
 
