@@ -6,11 +6,7 @@
 * the API routes getAllPages and blocks are removed. Custom
 code must call block-reference/pages and block-reference/blocks instead.
 Version 2 requires Kirby 6; blueprints and content need no changes.
-
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 * requires Kirby 6 and PHP 8.3 or newer.
-
-Co-Authored-By: Claude <noreply@anthropic.com>
 
 ### Features
 
