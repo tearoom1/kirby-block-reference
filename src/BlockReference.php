@@ -3,6 +3,7 @@
 namespace TearoomOne\BlockReference;
 
 use Kirby\Cms\Block;
+use Kirby\Cms\Fieldsets;
 use Kirby\Cms\Page;
 
 /**
@@ -89,7 +90,45 @@ class BlockReference
             return [];
         }
 
-        return self::blocksFromPage($page);
+        $formatted = [];
+        $blocks = self::blocksFromPage($page);
+
+        // tell the Panel which content fields hold HTML (writer and list fields),
+        // so it strips the tags only there and keeps e.g. the text of code blocks
+        foreach ($blocks as &$block) {
+            $formatted[$block['parent']] ??= self::formattedFieldNames($page, $block['parent']);
+            $block['formatted'] = $formatted[$block['parent']][$block['type']] ?? [];
+        }
+
+        return $blocks;
+    }
+
+    /**
+     * Names of the fields holding HTML, per block type of a blocks or layout field
+     *
+     * @return array<string, string[]>
+     */
+    protected static function formattedFieldNames(Page $page, string $fieldName): array
+    {
+        $props = $page->blueprint()->field($fieldName) ?? [];
+
+        try {
+            $fieldsets = Fieldsets::factory($props['fieldsets'] ?? null, ['parent' => $page]);
+        } catch (\Throwable) {
+            return [];
+        }
+
+        $names = [];
+        foreach ($fieldsets as $type => $fieldset) {
+            foreach ($fieldset->fields() as $name => $field) {
+                if (in_array($field['type'] ?? null, ['writer', 'list'], true)) {
+                    // content keys of blocks are lower-cased
+                    $names[$type][] = strtolower($name);
+                }
+            }
+        }
+
+        return $names;
     }
 
     /**
