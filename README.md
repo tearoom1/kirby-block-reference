@@ -4,8 +4,17 @@ This plugin allows you to reference other blocks.
 Thus, you can easily repeat a block in multiple places on your
 page while being able to update it in one central place.
 
+This is the Kirby 4 and 5 line (bug fixes only). For Kirby 6, use version 2 (branch `main`).
+
 
 ![Screenshot](screenshot.jpg)
+
+## Requirements
+
+| Kirby | Plugin version | Branch |
+|---|---|---|
+| 6 | 2.x (since 2.0.0) | `main` |
+| 4 and 5 | 1.x (bug fixes only, latest 1.1.1) | `kirby-5` |
 
 ## Getting started
 
