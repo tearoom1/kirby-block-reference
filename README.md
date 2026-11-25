@@ -76,6 +76,8 @@ The plugin's functions live in `TearoomOne\BlockReference\BlockReference` (`bloc
 
 Tests: `composer install && composer test`
 
+Panel bundle: `pnpm install && pnpm build` (kirbyup)
+
 ## Support
 
 Block Reference is free and MIT licensed, and it stays that way. If it saves you time, you can help keep it maintained. Paying is voluntary and any amount is welcome.
