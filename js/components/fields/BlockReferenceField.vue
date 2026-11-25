@@ -37,13 +37,7 @@ export default {
         for (let i = 0; i < response.length; i++) {
           let content = response[i].content;
           // find all text nodes in the content where the field name is
-          // without the HTML tags of writer and text blocks
-          let text = Object.values(content)
-              .join(' ~ ')
-              .replace(/<[^>]*>/g, ' ')
-              .replace(/\s+/g, ' ')
-              .trim()
-              .substring(0, 33);
+          let text = this.preview(response[i]);
           // console.log('Block: ' + response[i].type + ' : ' + text);
           options.push({
             text: i + ': ' + response[i].parent + ' | ' + response[i].type + ' | ' + text,
@@ -56,6 +50,22 @@ export default {
           this.$forceUpdate();
         });
       });
+    },
+    // the block content joined and cut to a short plain-text preview
+    preview(block) {
+      const formatted = block.formatted || [];
+
+      return Object.entries(block.content)
+        .map(([key, value]) => {
+          const text = typeof value === 'string' ? value : JSON.stringify(value);
+
+          // only writer and list fields hold HTML, keep e.g. code as written
+          return formatted.includes(key) ? text.replace(/<[^>]*>/g, ' ') : text;
+        })
+        .join(' ~ ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .substring(0, 33);
     },
     $withoutWatchers(cb) {
       if (!this._watcher) {

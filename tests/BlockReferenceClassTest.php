@@ -75,6 +75,25 @@ class BlockReferenceClassTest extends TestCase
         $this->assertSame(['child-heading'], array_column($this->api($kirby, 'block-reference/blocks'), 'id'));
     }
 
+    public function testApiNamesTheFieldsThatHoldHtml(): void
+    {
+        $_GET['page'] = 'source';
+        $kirby = $this->app([], [
+            'text' => json_encode([
+                ['id' => 'code-1', 'type' => 'code', 'content' => ['code' => '<?php echo 1; ?>', 'language' => 'php']],
+                ['id' => 'list-1', 'type' => 'list', 'content' => ['text' => '<ul><li>One</li></ul>']],
+            ]),
+        ]);
+        $kirby->impersonate('admin@example.test');
+
+        $blocks = array_column($this->api($kirby, 'block-reference/blocks'), null, 'id');
+
+        $this->assertSame([], $blocks['code-1']['formatted']);
+        $this->assertSame('<?php echo 1; ?>', $blocks['code-1']['content']['code']);
+        $this->assertSame(['text'], $blocks['list-1']['formatted']);
+        $this->assertSame(['text'], $blocks['in-layout']['formatted']);
+    }
+
     protected function tearDown(): void
     {
         unset($_GET['page']);
