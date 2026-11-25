@@ -13,7 +13,13 @@ Kirby 6 and PHP 8.3 or newer. For Kirby 4 and 5, use version 1 of this plugin (b
 
 ### Upgrading from version 1
 
-- Update Kirby to version 6 first, then the plugin to version 2.
+- Update Kirby and the plugin together: Kirby 6 rejects the way version 1 registers its field, and version 2 does not run on Kirby 4 and 5. With Composer, change both in one command:
+
+  ```bash
+  composer require getkirby/cms:^6.0 tearoom1/kirby-block-reference:^2.0 --with-all-dependencies
+  ```
+
+  Without Composer, replace the `kirby` folder and the plugin folder in the same step.
 - Blueprints and content stay as they are: the block `reference` and the field `type: blockReference` work as before.
 - The API routes `getAllPages` and `blocks` are gone. Custom code that calls them must use `block-reference/pages` and `block-reference/blocks`.
 
